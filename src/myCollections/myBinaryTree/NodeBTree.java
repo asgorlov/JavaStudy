@@ -1,6 +1,6 @@
 package myCollections.myBinaryTree;
 
-public class NodeBTree<E extends Number> {
+public class NodeBTree<E> {
 
     private NodeBTree left;
     private NodeBTree rigth;

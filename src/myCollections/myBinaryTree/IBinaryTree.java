@@ -1,10 +1,12 @@
 package myCollections.myBinaryTree;
 
-interface IBinaryTree<E extends Number> {
+import java.util.Comparator;
 
-    void add (E value);
+interface IBinaryTree<E> extends Comparator<E> {
 
-    boolean search (E value);
+    boolean add (E value);
+
+    NodeBTree<E> search (E value);
 
     boolean remove (E value);
 
@@ -13,5 +15,7 @@ interface IBinaryTree<E extends Number> {
     E findMin();
 
     boolean isEmpty();
+
+    void clear();
 }
 

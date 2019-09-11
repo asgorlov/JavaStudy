@@ -1,6 +1,8 @@
 package myCollections.myBinaryTree;
 
-public class MyBinaryTree<E extends Number> {
+import java.util.NoSuchElementException;
+
+public class MyBinaryTree<E extends Comparable<E>> implements IBinaryTree<E> {
 
     private NodeBTree root;
 
@@ -12,72 +14,119 @@ public class MyBinaryTree<E extends Number> {
         this.root = root;
     }
 
-    public boolean search(int value) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean add(E value) {
+
+        NodeBTree<E> node = new NodeBTree(value);
+
         if (isEmpty()) {
-            return isEmpty();
+            root = node;
+            return true;
         }
+        else {
+            NodeBTree<E> current = root;
+            NodeBTree<E> parent;
 
-        NodeBTree<E> currentNode = root;
+            while (true) {
+                parent = current;
 
-//        while (currentNode != null) {
-//
-//            if (currentNode.getValue() == value) {
-//                return true;
-//            }
-//
-//            if (currentNode.getValue() > value) {
-//                currentNode = currentNode.getLeft();
-//            }else {
-//                currentNode = currentNode.getRigth();
-//            }
-//        }
-        return false;
+                if (compare(current.getValue(), node.getValue()) == 0) {
+                    return false;
+                }
+
+                if (compare(current.getValue(), node.getValue()) > 0) {
+                    current = parent.getLeft();
+
+                    if (current == null) {
+                        parent.setLeft(node);
+                        return true;
+                    }
+                }
+                else {
+                    current = parent.getRigth();
+
+                    if (current == null) {
+                        parent.setRigth(node);
+                        return true;
+                    }
+                }
+            }
+        }
     }
 
-    public boolean remove(int value) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public NodeBTree<E> search(E value) {
+
+        NodeBTree<E> node = root;
+
+        while (node != null) {
+
+            if (compare(node.getValue(), value) == 0) {
+                return node;
+            }
+
+            if (compare(node.getValue(), value) > 0) {
+                node = node.getLeft();
+            }
+            else {
+                node = node.getRigth();
+            }
+        }
+        return node;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean remove(E value) {
+
         if (isEmpty()){
-            System.out.println("Tree is empty");
-            return false;
-        }else {
-            NodeBTree currentNode = root;
-            NodeBTree parentNode = root;
+            throw new NoSuchElementException();
+        }
+        else {
+            NodeBTree<E> current = root;
+            NodeBTree<E> parent = root;
             boolean isRightChild = false;
 
-//            while (currentNode.getValue() != value) {
-//                parentNode = currentNode;
-//
-//                if (currentNode.getValue() > value) {
-//                    isRightChild = false;
-//                    currentNode = currentNode.getLeft();
-//                }else if (currentNode.getValue() < value) {
-//                    isRightChild = true;
-//                    currentNode = currentNode.getRigth();
-//                }
-//
-//                if (currentNode == null) {
-//                    return false;
-//                }
-//            }
+            while (compare(current.getValue(), value) != 0) {
+                parent = current;
+
+                if (compare(current.getValue(), value) > 0) {
+                    isRightChild = false;
+                    current = current.getLeft();
+                }
+                else if (compare(current.getValue(), value) < 0) {
+                    isRightChild = true;
+                    current = current.getRigth();
+                }
+
+                if (current == null) {
+                    return false;
+                }
+            }
 
             //CASE 1: node without childs
-            if (currentNode.getLeft() == null && currentNode.getRigth() == null) {
-                if (currentNode == root) {
+            if (current.getLeft() == null && current.getRigth() == null) {
+
+                if (current == root) {
                     root = null;
                 }
 
                 if (isRightChild) {
-                    parentNode.setRigth(null);
-                }else {
-                    parentNode.setLeft(null);
+                    parent.setRigth(null);
+                }
+                else {
+                    parent.setLeft(null);
                 }
                 return true;
             }
 
             //CASE 2: node with two childs
-            if (currentNode.getLeft() != null & currentNode.getRigth() != null) {
-                NodeBTree successor = null;
-                NodeBTree parentSuccessor = null;
-                NodeBTree tempNode = currentNode.getRigth();
+            if (current.getLeft() != null & current.getRigth() != null) {
+                NodeBTree<E> successor = current.getRigth();
+                NodeBTree<E> parentSuccessor = current.getRigth();
+                NodeBTree<E> tempNode = current.getRigth();
 
                 while (tempNode != null) {
                     parentSuccessor = successor;
@@ -88,100 +137,117 @@ public class MyBinaryTree<E extends Number> {
                 if (successor.getRigth() != null) {
                     parentSuccessor.setLeft(successor.getRigth());
                 }
-                successor.setRigth(currentNode.getRigth());
-                successor.setLeft(currentNode.getLeft());
 
-                if (currentNode == root) {
+                successor.setRigth(current.getRigth());
+                successor.setLeft(current.getLeft());
+
+                if (current == root) {
                     root = successor;
                 }
-
-                if (isRightChild) {
-                    parentNode.setRigth(successor);
+                else if (isRightChild) {
+                    parent.setRigth(successor);
                 }else {
-                    parentNode.setLeft(successor);
+                    parent.setLeft(successor);
                 }
                 return true;
             }
 
             //CASE 3: node with only one child
-            if (currentNode.getLeft() != null) {
-                if (currentNode == root) {
-                    root = currentNode.getLeft();
-                }else if (isRightChild){
-                    parentNode.setRigth(currentNode.getLeft());
-                }else {
-                    parentNode.setLeft(currentNode.getLeft());
+            if (current.getLeft() != null) {
+                if (current == root) {
+                    root = current.getLeft();
+                }
+                else if (isRightChild){
+                    parent.setRigth(current.getLeft());
+                }
+                else {
+                    parent.setLeft(current.getLeft());
                 }
 
                 return true;
             }else {
-                if (currentNode == root) {
-                    root = currentNode.getRigth();
-                }else if (isRightChild) {
-                    parentNode.setRigth(currentNode.getRigth());
-                }else {
-                    parentNode.setLeft(currentNode.getRigth());
+                if (current == root) {
+                    root = current.getRigth();
+                }
+                else if (isRightChild) {
+                    parent.setRigth(current.getRigth());
+                }
+                else {
+                    parent.setLeft(current.getRigth());
                 }
                 return true;
             }
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public void add(E value) {
-
-        NodeBTree node = new NodeBTree(value);
+    public E findMax() {
 
         if (isEmpty()) {
-            root = node;
+            throw new NoSuchElementException();
         }
-        else {
-            NodeBTree current = root;
-            NodeBTree parent;
 
-//            while (true) {
-////                parent = current;
-////
-////                if (current.getValue().equals(node.getValue())) {
-////                    throw new UnsupportedOperationException("Duplicate nodes not allowed in Binary Search Tree");
-////                }
-////                if (current.getValue() > node.getValue()) {
-////                    current = parent.getLeft();
-////                    if (current == null) {
-////                        parent.setLeft(node);
-////                        break;
-////                    }
-////                } else {
-////                    current = parent.getRigth();
-////                    if (current == null) {
-////                        parent.setRigth(node);
-////                        break;
-////                    }
-////                }
-////            }
+        NodeBTree<E> current = root;
+
+        while (current.getRigth() != null) {
+            current = current.getRigth();
         }
+
+        return current.getValue();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean search(E value) {
-        return false;
-    }
-
-    @Override
-    public boolean remove(E value) {
-        return false;
-    }
-
-    public E findMax() {
-        E value;
-        return value;
-    }
-
     public E findMin() {
-        return E;
+
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+
+        NodeBTree<E> current = root;
+
+        while (current.getLeft() != null) {
+            current = current.getLeft();
+        }
+
+        return current.getValue();
     }
 
+    @Override
     public boolean isEmpty() {
         return root == null;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public void clear() {
+
+        if (!isEmpty()) {
+            deleteNode(root);
+        }
+
+        root = null;
+    }
+
+    @Override
+    public int compare(E o1, E o2) {
+        return o1.compareTo(o2);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void deleteNode(NodeBTree<E> node) {
+
+        if (node.getLeft()!= null) {
+            deleteNode(node.getLeft());
+        }
+
+        if (node.getRigth() != null) {
+            deleteNode(node.getRigth());
+        }
+
+        node.setLeft(null);
+        node.setRigth(null);
+        node.setValue(null);
     }
 }
