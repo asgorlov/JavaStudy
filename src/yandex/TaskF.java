@@ -27,16 +27,20 @@ public class TaskF {
             for (short i = 0; i < numbers.length; i++) {
                 if (numbers[i] == numM) {
                     result[0] = i + 1;
+                    break;
                 }
             }
         }
         else if (numM == 0) {
             for (short i = 0; i < numbers.length; i++) {
                 if (numbers[i] == 0) {
-                    result[0] = i + 1;
-                    for (short j = 1; j < result.length; j++) {
+                    result[counter++] = i + 1;
+                    for (short j = 0; j < numbers.length; j++) {
+                        if (counter == elemK) {
+                            break;
+                        }
                         if (j != i) {
-                            result[j] = j + 1;
+                            result[counter++] = j + 1;
                         }
                     }
                     break;
@@ -47,9 +51,9 @@ public class TaskF {
             for (short i = 0; i < numbers.length; i++) {
                 if (numbers[i] == numM) {
                     result[counter++] = i + 1;
-                }
-                if (counter == elemK) {
-                    break;
+                    if (counter == elemK) {
+                        break;
+                    }
                 }
             }
         }

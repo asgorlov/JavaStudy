@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0739b8f7-5411-427a-aeef-4ec3e79581e2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaStudy/yandex/TaskF.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaStudy/yandex/TaskF.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaStudy/yandex/TaskFIn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaStudy/yandex/TaskFIn.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaStudy/yandex/TaskFOut.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaStudy/yandex/TaskFOut.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/yandex/TaskF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yandex/TaskF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yandex/TaskFIn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/yandex/TaskFIn.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yandex/TaskFOut.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/yandex/TaskFOut.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,11 +22,31 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/yandex/TaskF.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="132" column="46" lean-forward="true" selection-start-line="132" selection-start-column="46" selection-end-line="132" selection-end-column="46" />
+            <state relative-caret-position="-561">
+              <caret line="21" column="56" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#getInitialData#0;class#TaskF#0" />
+                <element signature="method#writeResult#0;class#TaskF#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/yandex/TaskFOut.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/yandex/TaskFIn.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="50" selection-start-line="1" selection-start-column="50" selection-end-line="1" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -48,8 +74,8 @@
         <option value="$PROJECT_DIR$/src/yandex/TaskBOut.txt" />
         <option value="$PROJECT_DIR$/src/yandex/TaskB.java" />
         <option value="$PROJECT_DIR$/src/yandex/read me.txt" />
-        <option value="$PROJECT_DIR$/src/yandex/TaskFIn.txt" />
         <option value="$PROJECT_DIR$/src/yandex/TaskF.java" />
+        <option value="$PROJECT_DIR$/src/yandex/TaskFIn.txt" />
       </list>
     </option>
   </component>
@@ -64,6 +90,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -86,14 +113,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568810040458" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568812524366" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -177,7 +203,8 @@
       <workItem from="1568370938099" duration="8976000" />
       <workItem from="1568626827875" duration="12733000" />
       <workItem from="1568696437287" duration="22774000" />
-      <workItem from="1568806615415" duration="3412000" />
+      <workItem from="1568806615415" duration="3907000" />
+      <workItem from="1568811203824" duration="1285000" />
     </task>
     <task id="LOCAL-00001" summary="Reworked all methods of myBinaryTree v 1.0">
       <created>1568202353047</created>
@@ -204,14 +231,14 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78563000" />
+    <option name="totallyTimeSpent" value="80343000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49134198" visible="true" weight="0.19189766" />
-      <window_info id="Structure" order="1" sideWeight="0.508658" side_tool="true" visible="true" weight="0.19189766" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4903226" visible="true" weight="0.19402985" />
+      <window_info id="Structure" order="1" sideWeight="0.5096774" side_tool="true" visible="true" weight="0.19402985" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -219,7 +246,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32900432" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32900432" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32900432" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39935064" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -642,23 +669,25 @@
     <entry file="file://$PROJECT_DIR$/src/yandex/TaskFOut.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
+          <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yandex/TaskFIn.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
+        <state relative-caret-position="17">
+          <caret line="1" column="50" selection-start-line="1" selection-start-column="50" selection-end-line="1" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yandex/TaskF.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="132" column="46" lean-forward="true" selection-start-line="132" selection-start-column="46" selection-end-line="132" selection-end-column="46" />
+        <state relative-caret-position="-561">
+          <caret line="21" column="56" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getInitialData#0;class#TaskF#0" />
+            <element signature="method#writeResult#0;class#TaskF#0" />
           </folding>
         </state>
       </provider>
