@@ -19,27 +19,21 @@ public class TaskF {
         int[] result = new int[elemK];
 
         if (elemK == lengthN) {
-
             for (short i = 0; i < numbers.length; i++) {
                 result[i] = i + 1;
             }
         }
         else if (elemK == 1) {
-
             for (short i = 0; i < numbers.length; i++) {
-
                 if (numbers[i] == numM) {
                     result[0] = i + 1;
                 }
             }
         }
         else if (numM == 0) {
-
             for (short i = 0; i < numbers.length; i++) {
-
                 if (numbers[i] == 0) {
                     result[0] = i + 1;
-
                     for (short j = 1; j < result.length; j++) {
                         if (j != i) {
                             result[j] = j + 1;
@@ -50,9 +44,7 @@ public class TaskF {
             }
         }
         else if (numM == 1) {
-
             for (short i = 0; i < numbers.length; i++) {
-
                 if (numbers[i] == numM) {
                     result[counter++] = i + 1;
                 }
@@ -62,24 +54,23 @@ public class TaskF {
             }
         }
         else {
-            result = findIndexes(result);
+            result = getIndexes(result);
         }
+
         writeResult(result);
     }
 
-    private static int[] findIndexes(int[] result) {
+    private static int[] getIndexes(int[] result) {
 
         for (short i = 0; i < numbers.length; i++) {
-
             if (numbers[i] == 0) {
                 continue;
             }
-
             if (numM % numbers[i] == 0) {
-                long tempNum = numbers[i];
                 counter = 0;
+                long multiNum = numbers[i];
                 result[counter++] = i + 1;
-                result = searchIndex(result,tempNum);
+                result = findIndex(result,multiNum);
 
                 if (counter == elemK) {
                     break;
@@ -89,23 +80,20 @@ public class TaskF {
         return result;
     }
 
-    private static int[] searchIndex(int[] result, long tempNum) {
+    private static int[] findIndex(int[] result, long multiNum) {
 
         for (short i = 0; i < numbers.length; i++) {
-
             if (counter == elemK) {
                 return result;
             }
-
             if (numbers[i] == 0) {
                 continue;
             }
-
             if (numM % numbers[i] != 0) {
                 continue;
             }
-            boolean isEqualIndex = false;
 
+            boolean isEqualIndex = false;
             for (short j = 0; j < counter; j++) {
 
                 if (result[j] == (i + 1)) {
@@ -113,36 +101,37 @@ public class TaskF {
                     break;
                 }
             }
-
             if (isEqualIndex) {
                 continue;
             }
 
-            if (tempNum * numbers[i] < numM) {
-                tempNum *= numbers[i];
+            long tempNum = multiNum * numbers[i];
+            if (tempNum < numM) {
+                multiNum = tempNum;
                 result[counter++] = i + 1;
-
                 if (counter == elemK) {
                     result[--counter] = 0;
                 }
                 else {
                     short tempCounter = counter;
-                    result = searchIndex(result,tempNum);
-
+                    result = findIndex(result,multiNum);
                     if (tempCounter == counter) {
                         result[--counter] = 0;
                     }
                 }
             }
-            else if (tempNum * numbers[i] == numM) {
-                tempNum *= numbers[i];
+            else if (tempNum == numM) {
+                multiNum = tempNum;
                 result[counter++] = i + 1;
-
                 if (counter == elemK) {
                     return result;
                 }
                 else {
-                    result = searchIndex(result,tempNum);
+                    short tempCounter = counter;
+                    result = findIndex(result,multiNum);
+                    if (tempCounter == counter) {
+                        result[--counter] = 0;
+                    }
                 }
             }
         }
@@ -155,7 +144,6 @@ public class TaskF {
 
         try {
             FileReader reader = new FileReader("src/yandex/TaskFIn.txt");
-
             try {
                 Scanner input = new Scanner(reader);
                 byte lineCounter = 0;
@@ -193,7 +181,6 @@ public class TaskF {
 
         try {
             FileWriter writer = new FileWriter("src/yandex/TaskFOut.txt");
-
             try {
                 for (int i1 : result) {
                     writer.write(i1 + " ");
