@@ -3,15 +3,18 @@ package yandex;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.*;
 
 public class TaskF {
 
-   private static short lengthN;
-   private static int numM;
-   private static short elemK;
-   private static int[] numbers;
-   private static short counter;
+   public static short lengthN;
+   public static int numM;
+   public static short elemK;
+   public static int[] numbers;
+
+   public static short counter;
+   public static List<Integer> numList;
+   public static long multiNum;
 
     public static void main(String[] args) {
 
@@ -64,87 +67,158 @@ public class TaskF {
         writeResult(result);
     }
 
-    private static int[] getIndexes(int[] result) {
+    public static int[] getIndexes(int[] result) {
 
-        for (short i = 0; i < numbers.length; i++) {
-            if (numbers[i] == 0) {
-                continue;
-            }
-            if (numM % numbers[i] == 0) {
-                counter = 0;
-                long multiNum = numbers[i];
-                result[counter++] = i + 1;
-                result = findIndex(result,multiNum);
+        int[][] data = getData();
 
-                if (counter == elemK) {
-                    break;
-                }
-            }
-        }
         return result;
     }
 
-    private static int[] findIndex(int[] result, long multiNum) {
+    private static int[][] getData(){
 
+        int[] sortedArr = new int[numbers.length];
         for (short i = 0; i < numbers.length; i++) {
-            if (counter == elemK) {
-                return result;
-            }
-            if (numbers[i] == 0) {
-                continue;
-            }
-            if (numM % numbers[i] != 0) {
-                continue;
-            }
-
-            boolean isEqualIndex = false;
-            for (short j = 0; j < counter; j++) {
-
-                if (result[j] == (i + 1)) {
-                    isEqualIndex = true;
-                    break;
-                }
-            }
-            if (isEqualIndex) {
-                continue;
-            }
-
-            long tempNum = multiNum * numbers[i];
-            if (tempNum < numM) {
-                multiNum = tempNum;
-                result[counter++] = i + 1;
-                if (counter == elemK) {
-                    result[--counter] = 0;
-                }
-                else {
-                    short tempCounter = counter;
-                    result = findIndex(result,multiNum);
-                    if (tempCounter == counter) {
-                        result[--counter] = 0;
-                    }
-                }
-            }
-            else if (tempNum == numM) {
-                multiNum = tempNum;
-                result[counter++] = i + 1;
-                if (counter == elemK) {
-                    return result;
-                }
-                else {
-                    short tempCounter = counter;
-                    result = findIndex(result,multiNum);
-                    if (tempCounter == counter) {
-                        result[--counter] = 0;
-                    }
+            if (numbers[i] > 0 && numbers[i] <= numM) {
+                if (numM % numbers[i] == 0) {
+                    sortedArr[i] = numbers[i];
                 }
             }
         }
-        return result;
+        Arrays.sort(sortedArr);
+
+        ArrayList<Integer> dataList = new ArrayList<>();
+        for (short i = 0; i < sortedArr.length; i++) {
+            int numCounter = 0;
+            dataList.add(sortedArr[i]);
+
+            for (short j = i; j < sortedArr.length; j++){
+                if (sortedArr[i] == sortedArr[j]) {
+                    numCounter++;
+                }
+                else {
+                    i = --j;
+                    break;
+                }
+            }
+            dataList.add(numCounter);
+        }
+
+        int[][] data = new int[dataList.size() / 2][2];
+        short indexOdd = 0;
+        short indexEven = 0;
+        for (short i = 0; i < dataList.size(); i++) {
+            if (i % 2 == 0) {
+                data[indexEven++][0] = dataList.get(i);
+            }
+            else {
+                data[indexOdd++][1] = dataList.get(i);
+            }
+        }
+        return data;
     }
+
+//    public static int[] getIndexes(int[] result) {
+//
+//        int[] indexes = new int[result.length];
+//        numList = new ArrayList<>();
+//
+//        for (int element : numbers) {
+//            if (element <= numM && element > 0) {
+//                if (numM % element == 0) {
+//                    numList.add(element);
+//                }
+//            }
+//        }
+//        Collections.sort(numList);
+//
+//        for (int i = (numList.size() - 1); i >= 0; i--) {
+//            counter = 0;
+//            multiNum = numbers[i];
+//            indexes[counter++] = i;
+//            indexes = findIndex(indexes);
+//
+//            if (counter == elemK) {
+//                break;
+//            }
+//        }
+//
+//        System.out.println(numList.toString());
+//        for (int i : indexes) {
+//            System.out.println(i);
+//        }
+//
+//        counter = 1;
+//        for (short i = 0; i < indexes.length; i++) {
+//
+//            for (short j = 0; j < numbers.length; j++) {
+//                if (numList.get(indexes[i]) == numbers[j]) {
+//
+//                    boolean isEqualIndex = false;
+//                    for (short k = 0; k < result.length; k++) {
+//                        if (result[k] == (j + 1)) {
+//                            isEqualIndex = true;
+//                            break;
+//                        }
+//                    }
+//                    if (!isEqualIndex){
+//                        result[i] = j + 1;
+//                        counter++;
+//                    }
+//                }
+//            }
+//        }
+//        return result;
+//    }
+//
+//    public static int[] findIndex(int[] indexes) {
+//
+//        for (short i = 0; i < numList.size(); i++) {
+//            if (counter == elemK) {
+//                return indexes;
+//            }
+//
+//            boolean isEqualIndex = false;
+//            for (short j = 0; j < counter; j++) {
+//                if (indexes[j] == i) {
+//                    isEqualIndex = true;
+//                    break;
+//                }
+//            }
+//            if (isEqualIndex) {
+//                continue;
+//            }
+//
+//            long tempNum = multiNum;
+//            multiNum *= numList.get(i);
+//            if (multiNum <= numM) {
+//                indexes[counter++] = i;
+//                if (counter == elemK) {
+//                    if (multiNum == numM){
+//                        return indexes;
+//                    }else {
+//                        indexes[--counter] = -1;
+//                        multiNum = tempNum;
+//                    }
+//                }
+//                else {
+//                    short tempCounter = counter;
+//                    indexes = findIndex(indexes);
+//                    if (tempCounter == counter) {
+//                        indexes[--counter] = -1;
+//                        multiNum = tempNum;
+//                    }
+//                }
+//            }
+//            else {
+//                multiNum = tempNum;
+//            }
+//        }
+//        return indexes;
+//    }
 
     private static void getInitialData() {
 
-        String[] inicialData = new String[2];
+        String[] initialData = new String[2];
 
         try {
             FileReader reader = new FileReader("src/yandex/TaskFIn.txt");
@@ -153,7 +227,7 @@ public class TaskF {
                 byte lineCounter = 0;
 
                 while (input.hasNext()) {
-                    inicialData[lineCounter++] = input.nextLine();
+                    initialData[lineCounter++] = input.nextLine();
                 }
             }
             finally {
@@ -165,12 +239,12 @@ public class TaskF {
         }
 
         try {
-            String[] nums = inicialData[0].split(" ");
+            String[] nums = initialData[0].split(" ");
             lengthN = Short.valueOf(nums[0]);
             numM = Integer.valueOf(nums[1]);
             elemK = Short.valueOf(nums[2]);
             numbers = new int[lengthN];
-            String[] array = inicialData[1].split(" ");
+            String[] array = initialData[1].split(" ");
 
             for (short i = 0; i < array.length; i++) {
                 numbers[i] = Integer.valueOf(array[i]);
