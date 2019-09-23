@@ -11,30 +11,15 @@ public class TaskF {
    public static int numM;
    public static short elemK;
    public static int[] numbers;
-
    public static short counter;
-   public static List<Integer> numList;
-   public static long multiNum;
 
     public static void main(String[] args) {
 
         getInitialData();
         int[] result = new int[elemK];
 
-        if (elemK == lengthN) {
-            for (short i = 0; i < numbers.length; i++) {
-                result[i] = i + 1;
-            }
-        }
-        else if (elemK == 1) {
-            for (short i = 0; i < numbers.length; i++) {
-                if (numbers[i] == numM) {
-                    result[0] = i + 1;
-                    break;
-                }
-            }
-        }
-        else if (numM == 0) {
+        //case if M = 0
+        if (numM == 0) {
             for (short i = 0; i < numbers.length; i++) {
                 if (numbers[i] == 0) {
                     result[counter++] = i + 1;
@@ -50,6 +35,7 @@ public class TaskF {
                 }
             }
         }
+        //case if M = 1
         else if (numM == 1) {
             for (short i = 0; i < numbers.length; i++) {
                 if (numbers[i] == numM) {
@@ -60,21 +46,119 @@ public class TaskF {
                 }
             }
         }
+        //case if K = N
+        else if (elemK == lengthN) {
+            for (short i = 0; i < numbers.length; i++) {
+                result[i] = i + 1;
+            }
+        }
+        //case if K = 1
+        else if (elemK == 1) {
+            for (short i = 0; i < numbers.length; i++) {
+                if (numbers[i] == numM) {
+                    result[0] = i + 1;
+                    break;
+                }
+            }
+        }
+        //case if K = 2
+        else if (elemK == 2) {
+            for (short i = 0; i < numbers.length; i++) {
+                int firstMulti = numbers[i];
+                if (firstMulti != 0 && numM % firstMulti == 0) {
+                    result[counter++] = i + 1;
+                    int secondMulti = numM / numbers[i];
+
+                    for (int j = numbers.length - 1; j >= 0; j--) {
+                        if (secondMulti == numbers[j] && j != i) {
+                            result[counter++] = j + 1;
+                            break;
+                        }
+                    }
+                    if (counter == elemK) {
+                        break;
+                    }
+                }
+            }
+        }
+        //in all other cases
         else {
-            result = getIndexes(result);
+            result = findIndexes(result);
         }
 
         writeResult(result);
     }
 
-    public static int[] getIndexes(int[] result) {
+    public static int[] findIndexes(int[] result) {
 
-        int[][] data = getData();
+        int[][] data = createDataArray();
+        int[] multipliers = findMultipliers(data);
 
+        for (short i = 0; i < multipliers.length; i++) {
+            for (short j = 0; j < numbers.length; j++) {
+                if (multipliers[i] == numbers[j]) {
+                    boolean isEqualElement = false;
+                    for (short k = 0; k < i + 1; k++) {
+                        if (j == result[k] - 1) {
+                            isEqualElement = true;
+                            break;
+                        }
+                    }
+                    if (!isEqualElement) {
+                        result[i] = j + 1;
+                    }
+                }
+            }
+        }
         return result;
     }
 
-    private static int[][] getData(){
+    public static int[] findMultipliers(int[][] data) {
+
+        int[] multipliers = new int[elemK];
+
+        if (data[data.length - 1][0] == numM) {
+            if (data[0][0] == 1) {
+                if (data[0][1] >= (elemK - 1)) {
+                    multipliers[0] = numM;
+                    for (short i = 1; i < multipliers.length; i++) {
+                        multipliers[i] = data[0][0];
+                    }
+                    return multipliers;
+                }
+            }
+        }
+        else if (data[0][0] == 1) {
+            for (int i = (data.length - 1); i >= 0; i--) {
+                multipliers[counter++] = data[i][0];
+                int tempNum = numM / data[i][0];
+
+                for (short j = 1; j < data.length; j++) {
+
+                    if (data[j][0] == tempNum) {
+                        multipliers[counter++] = tempNum;
+
+                        if (elemK - counter <= data[0][1]) {
+                            while (counter != elemK) {
+                                multipliers[counter++] = data[0][0];
+                            }
+                            return multipliers;
+                        }
+                        multipliers[counter--] = 0;
+                        break;
+                    }
+                    else if (data[j][0] > tempNum) {
+                        break;
+                    }
+                }
+                multipliers[counter--] = 0;
+            }
+        }
+
+        return multipliers;
+    }
+
+    public static int[][] createDataArray(){
 
         int[] sortedArr = new int[numbers.length];
         for (short i = 0; i < numbers.length; i++) {
@@ -117,106 +201,7 @@ public class TaskF {
         return data;
     }
 
-//    public static int[] getIndexes(int[] result) {
-//
-//        int[] indexes = new int[result.length];
-//        numList = new ArrayList<>();
-//
-//        for (int element : numbers) {
-//            if (element <= numM && element > 0) {
-//                if (numM % element == 0) {
-//                    numList.add(element);
-//                }
-//            }
-//        }
-//        Collections.sort(numList);
-//
-//        for (int i = (numList.size() - 1); i >= 0; i--) {
-//            counter = 0;
-//            multiNum = numbers[i];
-//            indexes[counter++] = i;
-//            indexes = findIndex(indexes);
-//
-//            if (counter == elemK) {
-//                break;
-//            }
-//        }
-//
-//        System.out.println(numList.toString());
-//        for (int i : indexes) {
-//            System.out.println(i);
-//        }
-//
-//        counter = 1;
-//        for (short i = 0; i < indexes.length; i++) {
-//
-//            for (short j = 0; j < numbers.length; j++) {
-//                if (numList.get(indexes[i]) == numbers[j]) {
-//
-//                    boolean isEqualIndex = false;
-//                    for (short k = 0; k < result.length; k++) {
-//                        if (result[k] == (j + 1)) {
-//                            isEqualIndex = true;
-//                            break;
-//                        }
-//                    }
-//                    if (!isEqualIndex){
-//                        result[i] = j + 1;
-//                        counter++;
-//                    }
-//                }
-//            }
-//        }
-//        return result;
-//    }
-//
-//    public static int[] findIndex(int[] indexes) {
-//
-//        for (short i = 0; i < numList.size(); i++) {
-//            if (counter == elemK) {
-//                return indexes;
-//            }
-//
-//            boolean isEqualIndex = false;
-//            for (short j = 0; j < counter; j++) {
-//                if (indexes[j] == i) {
-//                    isEqualIndex = true;
-//                    break;
-//                }
-//            }
-//            if (isEqualIndex) {
-//                continue;
-//            }
-//
-//            long tempNum = multiNum;
-//            multiNum *= numList.get(i);
-//            if (multiNum <= numM) {
-//                indexes[counter++] = i;
-//                if (counter == elemK) {
-//                    if (multiNum == numM){
-//                        return indexes;
-//                    }else {
-//                        indexes[--counter] = -1;
-//                        multiNum = tempNum;
-//                    }
-//                }
-//                else {
-//                    short tempCounter = counter;
-//                    indexes = findIndex(indexes);
-//                    if (tempCounter == counter) {
-//                        indexes[--counter] = -1;
-//                        multiNum = tempNum;
-//                    }
-//                }
-//            }
-//            else {
-//                multiNum = tempNum;
-//            }
-//        }
-//        return indexes;
-//    }
-
-    private static void getInitialData() {
+    public static void getInitialData() {
 
         String[] initialData = new String[2];
 

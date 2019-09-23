@@ -13,7 +13,7 @@ public class TaskFTest {
         TaskF.numM = 1000000000;
         TaskF.numbers =getNumbers();
         result = new int[TaskF.elemK];
-        result = TaskF.getIndexes(result);
+        result = TaskF.findIndexes(result);
         printResult(result);
     }
 
@@ -47,8 +47,9 @@ public class TaskFTest {
     private static int[] getNumbers() {
         int[] nums = new int[TaskF.lengthN];
         int counter = TaskF.elemK;
-        nums[counter--] = TaskF.numM;
-        nums[counter--] = TaskF.numM;
+        nums[counter--] = TaskF.numM / 1000;
+        nums[counter--] = 1000;
+
 
         while (counter >= 0) {
             nums[counter--] = 1;
