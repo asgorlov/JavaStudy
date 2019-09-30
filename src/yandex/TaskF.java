@@ -7,11 +7,11 @@ import java.util.*;
 
 public class TaskF {
 
-   public static short lengthN;
-   public static int numM;
-   public static short elemK;
-   public static int[] numbers;
-   public static short counter;
+    private static short lengthN;
+    private static int numM;
+    private static short elemK;
+    private static int[] numbers;
+    private static short counter;
 
     public static void main(String[] args) {
 
@@ -89,7 +89,7 @@ public class TaskF {
         writeResult(result);
     }
 
-    public static int[] findIndexes(int[] result) {
+    private static int[] findIndexes(int[] result) {
 
         int[][] data = createDataArray();
         int[] multipliers = findMultipliers(data);
@@ -113,70 +113,25 @@ public class TaskF {
         return result;
     }
 
-    public static int[] findMultipliers(int[][] data) {
+    private static int[][] createDataArray(){
 
-        int[] multipliers = new int[elemK];
-
-        if (data[data.length - 1][0] == numM) {
-            if (data[0][0] == 1) {
-                if (data[0][1] >= (elemK - 1)) {
-                    multipliers[0] = numM;
-                    for (short i = 1; i < multipliers.length; i++) {
-                        multipliers[i] = data[0][0];
-                    }
-                    return multipliers;
+        List<Integer> sortedArr = new ArrayList<>();
+        for (int number : numbers) {
+            if (numM % number == 0) {
+                if (number > 0 && number <= numM) {
+                    sortedArr.add(number);
                 }
             }
         }
-        else if (data[0][0] == 1) {
-            for (int i = (data.length - 1); i >= 0; i--) {
-                multipliers[counter++] = data[i][0];
-                int tempNum = numM / data[i][0];
+        Collections.sort(sortedArr);
 
-                for (short j = 1; j < data.length; j++) {
+        List<Integer> dataList = new ArrayList<>();
+        for (int i = 0; i < sortedArr.size(); i++) {
+            int numCounter = 1;
+            dataList.add(sortedArr.get(i));
 
-                    if (data[j][0] == tempNum) {
-                        multipliers[counter++] = tempNum;
-
-                        if (elemK - counter <= data[0][1]) {
-                            while (counter != elemK) {
-                                multipliers[counter++] = data[0][0];
-                            }
-                            return multipliers;
-                        }
-                        multipliers[counter--] = 0;
-                        break;
-                    }
-                    else if (data[j][0] > tempNum) {
-                        break;
-                    }
-                }
-                multipliers[counter--] = 0;
-            }
-        }
-
-        return multipliers;
-    }
-
-    public static int[][] createDataArray(){
-
-        int[] sortedArr = new int[numbers.length];
-        for (short i = 0; i < numbers.length; i++) {
-            if (numbers[i] > 0 && numbers[i] <= numM) {
-                if (numM % numbers[i] == 0) {
-                    sortedArr[i] = numbers[i];
-                }
-            }
-        }
-        Arrays.sort(sortedArr);
-
-        ArrayList<Integer> dataList = new ArrayList<>();
-        for (short i = 0; i < sortedArr.length; i++) {
-            int numCounter = 0;
-            dataList.add(sortedArr[i]);
-
-            for (short j = i; j < sortedArr.length; j++){
-                if (sortedArr[i] == sortedArr[j]) {
+            for (int j = i + 1; j < sortedArr.size(); j++){
+                if (sortedArr.get(i).equals(sortedArr.get(j))) {
                     numCounter++;
                 }
                 else {
@@ -201,22 +156,61 @@ public class TaskF {
         return data;
     }
 
-    public static void getInitialData() {
+    private static int[] findMultipliers(int[][] data) {
+
+        int[] multipliers = new int[elemK];
+        byte coefficient = 1;
+        if (data[data.length - 1][0] == numM) {
+            coefficient = 2;
+            if (data[0][0] == 1) {
+                if (data[0][1] >= (elemK - 1)) {
+                    multipliers[0] = numM;
+                    for (short i = 1; i < multipliers.length; i++) {
+                        multipliers[i] = data[0][0];
+                    }
+                    return multipliers;
+                }
+            }
+        }
+
+        for (int i = (data.length - coefficient); i >= 0; i--) {
+            multipliers[counter++] = data[i][0];
+            int tempNum = numM / data[i][0];
+
+            for (short j = 1; j < data.length; j++) {
+                if (data[j][0] == tempNum) {
+                    multipliers[counter++] = tempNum;
+
+                    if (elemK - counter <= data[0][1]) {
+                        while (counter != elemK) {
+                            multipliers[counter++] = data[0][0];
+                        }
+                        return multipliers;
+                    }
+                    multipliers[counter--] = 0;
+                    break;
+                }
+                else if (data[j][0] > tempNum) {
+                    break;
+                }
+            }
+            multipliers[counter--] = 0;
+        }
+        return multipliers;
+    }
+
+    private static void getInitialData() {
 
         String[] initialData = new String[2];
 
         try {
-            FileReader reader = new FileReader("src/yandex/TaskFIn.txt");
-            try {
+            try (FileReader reader = new FileReader("src/yandex/TaskFIn.txt")) {
                 Scanner input = new Scanner(reader);
                 byte lineCounter = 0;
 
                 while (input.hasNext()) {
                     initialData[lineCounter++] = input.nextLine();
                 }
-            }
-            finally {
-                reader.close();
             }
         }
         catch (IOException e) {
@@ -243,14 +237,10 @@ public class TaskF {
     private static void writeResult(int[] result) {
 
         try {
-            FileWriter writer = new FileWriter("src/yandex/TaskFOut.txt");
-            try {
+            try (FileWriter writer = new FileWriter("src/yandex/TaskFOut.txt")) {
                 for (int i1 : result) {
                     writer.write(i1 + " ");
                 }
-            }
-            finally {
-                writer.close();
             }
         }
         catch (IOException e) {

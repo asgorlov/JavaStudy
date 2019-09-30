@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0739b8f7-5411-427a-aeef-4ec3e79581e2" name="Default Changelist" comment="Added test task for interview TaskF v 1.0">
+    <list default="true" id="0739b8f7-5411-427a-aeef-4ec3e79581e2" name="Default Changelist" comment="Removed class TaskFTest and warning messages in TaskF v1.1(slow algorithm).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaStudy/yandex/TaskF.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaStudy/yandex/TaskF.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaStudy/yandex/TaskFIn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaStudy/yandex/TaskFIn.txt" afterDir="false" />
@@ -10,7 +10,7 @@
       <change beforePath="$PROJECT_DIR$/src/yandex/TaskF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yandex/TaskF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/yandex/TaskFIn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/yandex/TaskFIn.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/yandex/TaskFOut.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/yandex/TaskFOut.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yandex/TaskFTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/yandex/TaskFTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yandex/TaskFTest.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,25 +27,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/yandex/TaskF.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="55" column="30" lean-forward="true" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+            <state relative-caret-position="448">
+              <caret line="38" column="29" lean-forward="true" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#findIndexes#0;class#TaskF#0" />
-                <element signature="method#findMultipliers#0;class#TaskF#0" />
                 <element signature="method#createDataArray#0;class#TaskF#0" />
-                <element signature="e#6284#7390#0" />
-                <element signature="e#7396#7826#0" />
+                <element signature="method#findMultipliers#0;class#TaskF#0" />
+                <element signature="method#getInitialData#0;class#TaskF#0" />
+                <element signature="method#writeResult#0;class#TaskF#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/yandex/TaskFIn.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -73,8 +64,8 @@
         <option value="$PROJECT_DIR$/src/yandex/TaskBOut.txt" />
         <option value="$PROJECT_DIR$/src/yandex/TaskB.java" />
         <option value="$PROJECT_DIR$/src/yandex/read me.txt" />
-        <option value="$PROJECT_DIR$/src/yandex/TaskFTest.java" />
         <option value="$PROJECT_DIR$/src/yandex/TaskFIn.txt" />
+        <option value="$PROJECT_DIR$/src/yandex/TaskFTest.java" />
         <option value="$PROJECT_DIR$/src/yandex/TaskF.java" />
       </list>
     </option>
@@ -90,7 +81,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -114,14 +104,19 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569237432334" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569836821208" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -220,6 +215,11 @@
       <workItem from="1568806615415" duration="3907000" />
       <workItem from="1568811203824" duration="1285000" />
       <workItem from="1569215492654" duration="19031000" />
+      <workItem from="1569393906414" duration="11285000" />
+      <workItem from="1569476656059" duration="8358000" />
+      <workItem from="1569561191592" duration="1806000" />
+      <workItem from="1569835880518" duration="321000" />
+      <workItem from="1569836219017" duration="789000" />
     </task>
     <task id="LOCAL-00001" summary="Reworked all methods of myBinaryTree v 1.0">
       <created>1568202353047</created>
@@ -246,14 +246,14 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118438000" />
+    <option name="totallyTimeSpent" value="141002000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48701298" visible="true" weight="0.20042644" />
-      <window_info id="Structure" order="1" sideWeight="0.512987" side_tool="true" visible="true" weight="0.20042644" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.495671" visible="true" weight="0.21321961" />
+      <window_info id="Structure" order="1" sideWeight="0.504329" side_tool="true" visible="true" weight="0.21321961" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -330,7 +330,8 @@
     <MESSAGE value="Reworked all methods of myBinaryTree v 1.0" />
     <MESSAGE value="Added test task for interview TaskB v 1.0" />
     <MESSAGE value="Added test task for interview TaskF v 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added test task for interview TaskF v 1.0" />
+    <MESSAGE value="Removed class TaskFTest and warning messages in TaskF v1.1(slow algorithm)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed class TaskFTest and warning messages in TaskF v1.1(slow algorithm)." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -704,13 +705,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/yandex/TaskFTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/yandex/TaskFTest.java" />
     <entry file="file://$PROJECT_DIR$/src/yandex/TaskFOut.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -721,24 +716,99 @@
     <entry file="file://$PROJECT_DIR$/src/yandex/TaskFIn.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+          <caret line="1" column="15" lean-forward="true" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yandex/TaskF.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="55" column="30" lean-forward="true" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+        <state relative-caret-position="448">
+          <caret line="38" column="29" lean-forward="true" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#findIndexes#0;class#TaskF#0" />
-            <element signature="method#findMultipliers#0;class#TaskF#0" />
             <element signature="method#createDataArray#0;class#TaskF#0" />
-            <element signature="e#6284#7390#0" />
-            <element signature="e#7396#7826#0" />
+            <element signature="method#findMultipliers#0;class#TaskF#0" />
+            <element signature="method#getInitialData#0;class#TaskF#0" />
+            <element signature="method#writeResult#0;class#TaskF#0" />
           </folding>
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>JavaStudy</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
