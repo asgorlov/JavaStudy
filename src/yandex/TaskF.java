@@ -3,7 +3,10 @@ package yandex;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 public class TaskF {
 
@@ -83,7 +86,7 @@ public class TaskF {
         }
         //in all other cases
         else {
-            result = findIndexes(result);
+            findIndexes(result);
         }
 
         writeResult(result);
@@ -219,14 +222,14 @@ public class TaskF {
 
         try {
             String[] nums = initialData[0].split(" ");
-            lengthN = Short.valueOf(nums[0]);
-            numM = Integer.valueOf(nums[1]);
-            elemK = Short.valueOf(nums[2]);
+            lengthN = Short.parseShort(nums[0]);
+            numM = Integer.parseInt(nums[1]);
+            elemK = Short.parseShort(nums[2]);
             numbers = new int[lengthN];
             String[] array = initialData[1].split(" ");
 
             for (short i = 0; i < array.length; i++) {
-                numbers[i] = Integer.valueOf(array[i]);
+                numbers[i] = Integer.parseInt(array[i]);
             }
         }
         catch (NumberFormatException e) {
