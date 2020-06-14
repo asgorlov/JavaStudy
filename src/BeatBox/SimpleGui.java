@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SimpleGuil implements ActionListener {
+public class SimpleGui implements ActionListener {
 
     JButton button;
+    boolean isPressed = false;
 
     public static void main(String[] args) {
-        SimpleGuil gui = new SimpleGuil();
+        SimpleGui gui = new SimpleGui();
         gui.go();
     }
 
@@ -27,6 +28,12 @@ public class SimpleGuil implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        button.setText("I've been clicked");
+        if (isPressed) {
+            button.setText("click me");
+            isPressed = false;
+        } else {
+            button.setText("I've been clicked");
+            isPressed = true;
+        }
     }
 }
